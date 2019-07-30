@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/SmartChurch.CoreApi/SmartChurch/obj/Production/netcoreapp2.2
+/SmartChurch.CoreApi/SmartChurch/bin/Production/netcoreapp2.2
+/SmartChurch.CoreApi/.vs/SmartChurch/v16/Server/sqlite3
