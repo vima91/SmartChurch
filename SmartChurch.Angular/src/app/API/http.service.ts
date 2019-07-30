@@ -36,7 +36,7 @@ export class HttpService {
 
     if (item.Id) {
 
-      return this.http.delete(`${url}/${item.Id}`);
+      return this.http.delete(`${url}`);
     }
   }
 

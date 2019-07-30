@@ -12,6 +12,9 @@ export class RemindersListsComponent implements OnInit {
   visitCounter = 0;
   birthdayCounter = 0;
   marriageAnniversaryCounter = 0;
+  visitRemindersEvent:any;
+  birthdayRemindersEvent:any;
+  marriageAnniversaryRemindersEvent:any;
 
   constructor(
     private remindersService: HttpService,
