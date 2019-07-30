@@ -1,0 +1,14 @@
+C:\Users\Evram\source\repos\SmartChurch\SmartChurch\bin\Debug\netcoreapp2.2\SmartChurch.deps.json
+C:\Users\Evram\source\repos\SmartChurch\SmartChurch\bin\Debug\netcoreapp2.2\SmartChurch.runtimeconfig.json
+C:\Users\Evram\source\repos\SmartChurch\SmartChurch\bin\Debug\netcoreapp2.2\SmartChurch.runtimeconfig.dev.json
+C:\Users\Evram\source\repos\SmartChurch\SmartChurch\bin\Debug\netcoreapp2.2\SmartChurch.dll
+C:\Users\Evram\source\repos\SmartChurch\SmartChurch\obj\Debug\netcoreapp2.2\SmartChurch.csprojAssemblyReference.cache
+C:\Users\Evram\source\repos\SmartChurch\SmartChurch\obj\Debug\netcoreapp2.2\SmartChurch.csproj.CoreCompileInputs.cache
+C:\Users\Evram\source\repos\SmartChurch\SmartChurch\obj\Debug\netcoreapp2.2\SmartChurch.RazorAssemblyInfo.cache
+C:\Users\Evram\source\repos\SmartChurch\SmartChurch\obj\Debug\netcoreapp2.2\SmartChurch.RazorAssemblyInfo.cs
+C:\Users\Evram\source\repos\SmartChurch\SmartChurch\obj\Debug\netcoreapp2.2\SmartChurch.AssemblyInfoInputs.cache
+C:\Users\Evram\source\repos\SmartChurch\SmartChurch\obj\Debug\netcoreapp2.2\SmartChurch.AssemblyInfo.cs
+C:\Users\Evram\source\repos\SmartChurch\SmartChurch\obj\Debug\netcoreapp2.2\SmartChurch.RazorTargetAssemblyInfo.cache
+C:\Users\Evram\source\repos\SmartChurch\SmartChurch\bin\Debug\netcoreapp2.2\SmartChurch.pdb
+C:\Users\Evram\source\repos\SmartChurch\SmartChurch\obj\Debug\netcoreapp2.2\SmartChurch.dll
+C:\Users\Evram\source\repos\SmartChurch\SmartChurch\obj\Debug\netcoreapp2.2\SmartChurch.pdb

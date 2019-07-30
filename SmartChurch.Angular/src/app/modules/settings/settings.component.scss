@@ -1,0 +1,26 @@
+@import "../../scss/common";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.nav-link {
+  display: flex;
+  align-items:center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  mat-icon {
+    color: $color-brand;
+  }
+}
+
+.mat-sidenav-container {
+  height: calc(100vh - 64px);
+}
+
+.mat-drawer-container {
+  background-color: white !important;
+}

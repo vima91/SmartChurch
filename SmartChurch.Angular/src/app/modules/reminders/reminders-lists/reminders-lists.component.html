@@ -1,0 +1,76 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Reminders</h4>
+            <p class="card-category">Visit, Birthday and Marriage Anniversary Reminders </p>
+          </div>
+          <div class="card-body">
+            <mat-card>
+              <mat-card-content>
+                <div class="reminders-container">
+                  <div class="row">
+                    <div class="col-md-4 col-xs-12">
+                      <mat-card (click)="openVisitReminders()">
+                        <mat-card-title class="mat-card-title">Visit Reminders</mat-card-title>
+                        <mat-card-content>
+                          <strong>
+                            <div counto
+                                 [step]="50"
+                                 [countTo]="visitCounter"
+                                 [countFrom]="0"
+                                 [duration]="4"
+                                 (countoChange)="visitRemindersEvent = $event"
+                                 (countoEnd)="onCountoEnd()">{{visitRemindersEvent | number:'1.2-2'}}</div>
+                          </strong>
+                        </mat-card-content>
+                      </mat-card>
+                    </div>
+                    <div class="col-md-4 col-xs-12">
+                      <mat-card (click)="openBirthdayReminders()">
+                        <mat-card-title class="mat-card-title">Birthday Reminders</mat-card-title>
+                        <mat-card-content>
+                          <strong>
+                            <div counto
+                                 [step]="50"
+                                 [countTo]="birthdayCounter"
+                                 [countFrom]="0"
+                                 [duration]="4"
+                                 (countoChange)="birthdayRemindersEvent = $event"
+                                 (countoEnd)="onCountoEnd()">{{birthdayRemindersEvent | number:'1.2-2'}}</div>
+                          </strong>
+                        </mat-card-content>
+                      </mat-card>
+                    </div>
+                    <div class="col-md-4 col-xs-12">
+                      <mat-card (click)="openMarriageAnniversaryReminders()">
+                        <mat-card-title class="mat-card-title">Marriage Anniversary Reminders</mat-card-title>
+                        <mat-card-content>
+                          <strong>
+                            <div counto
+                                 [step]="50"
+                                 [countTo]="marriageAnniversaryCounter"
+                                 [countFrom]="0"
+                                 [duration]="4"
+                                 (countoChange)="marriageAnniversaryRemindersEvent = $event"
+                                 (countoEnd)="onCountoEnd()">{{marriageAnniversaryRemindersEvent | number:'1.2-2'}}</div>
+                          </strong>
+                        </mat-card-content>
+                      </mat-card>
+                    </div>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loader>
+  <mat-spinner></mat-spinner>
+</ng-template>

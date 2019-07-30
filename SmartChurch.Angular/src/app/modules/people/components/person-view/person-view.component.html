@@ -1,0 +1,284 @@
+<form [formGroup]="personForm">
+  <div class="row">
+    <div class="col-xs-12 col-md-3">
+      <div class="avatar"><img class="img-profile pulse" [src]="newAvatarImagePath"/>
+        <input class="fileUpload" type="file" (change)="uploadProfileImage($event)"/>
+        <svg id="camera" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+             x="0px" y="0px" viewBox="0 0 25 15" enable-background="new 0 0 25 15" xml:space="preserve">
+          <path id="cameraFrame" fill="none" stroke="#f85032" stroke-miterlimit="10"
+                d="M23.1,14.1H1.9c-0.6,0-1-0.4-1-1V1.9c0-0.6,0.4-1,1-1h21.2            c0.6,0,1,0.4,1,1v11.3C24.1,13.7,23.7,14.1,23.1,14.1z"></path>
+          <path id="circle" fill="none" stroke="#f85032" stroke-width="1.4" stroke-miterlimit="12"
+                d="M17.7,7.5c0-2.8-2.3-5.2-5.2-5.2S7.3,4.7,7.3,7.5s2.3,5.2,5.2,5.2            S17.7,10.3,17.7,7.5z"></path>
+          <g id="plus">
+            <path class="line" id="plusLine" fill="none" stroke="#f85032" stroke-linecap="round" stroke-miterlimit="10"
+                  d="M20.9,2.3v4.4"></path>
+            <path class="line" fill="none" stroke="#f85032" stroke-linecap="round" stroke-miterlimit="10"
+                  d="M18.7,4.6h4.4"></path>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="col-md-3 col-xs-12">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <label>
+          <input matInput placeholder="Name" type="text"  formControlName="Name">
+        </label>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3 col-xs-12">
+      <mat-form-field>
+        <mat-label>Confession Father Name</mat-label>
+        <label>
+          <input matInput placeholder="Confession Father Name" type="text" formControlName="ConfessionFatherName">
+        </label>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3 col-xs-12">
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <label>
+          <input matInput placeholder="Email" type="email" formControlName="Email">
+        </label>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3 col-xs-12">
+      <mat-form-field>
+        <mat-label>Phone Number</mat-label>
+        <label>
+          <input matInput placeholder="Phone Number" formControlName="PhoneNumber">
+        </label>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-3 col-xs-12">
+      <mat-form-field>
+        <mat-label>WhatsApp Number</mat-label>
+        <label>
+          <input matInput placeholder="WhatsApp Number" type="text" formControlName="WhatsappNumber">
+        </label>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3 col-xs-12">
+      <mat-form-field>
+        <mat-label>Facebook Link</mat-label>
+        <label>
+          <input matInput placeholder="Facebook Link" type="text" formControlName="FacebookLink">
+        </label>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3 col-xs-12">
+      <mat-form-field>
+        <mat-label>Comments</mat-label>
+        <label>
+          <input matInput placeholder="Comments" type="text" formControlName="Comments">
+        </label>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3 col-xs-12">
+      <mat-form-field>
+        <mat-label>Job</mat-label>
+        <label>
+          <input matInput placeholder="Job" type="text" formControlName="Job">
+        </label>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-3 col-xs-12">
+      <mat-form-field>
+        <mat-label>Address</mat-label>
+        <label>
+          <input matInput placeholder="Address" type="text" formControlName="Address">
+        </label>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3 col-xs-12">
+      <mat-form-field>
+        <mat-label>Weekends</mat-label>
+        <label>
+          <input matInput placeholder="Weekends" type="text" formControlName="Weekends">
+        </label>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-3 col-xs-12">
+      <mat-form-field>
+        <mat-label>Last Visit Year Of Marriage Anniversary</mat-label>
+        <label>
+          <input matInput placeholder="Last Visit Year Of Marriage Anniversary" type="text" formControlName="LastVisitYearOfMarriageAnniversary">
+        </label>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3 col-xs-12">
+      <mat-form-field>
+        <mat-label>Last Visit Year Of Birthday</mat-label>
+        <label>
+          <input matInput placeholder="Last Visit Year Of Birthday" type="text" formControlName="LastVisitYearOfBirthday">
+        </label>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 col-xs-12">
+      <mat-form-field>
+        <mat-label>Baptism Types</mat-label>
+        <mat-select formControlName="BaptismTypeId">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let baptismType of baptismTypes" [value]="baptismType.Id">
+            {{baptismType.Name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 col-xs-12">
+      <mat-form-field>
+        <mat-label>Grade</mat-label>
+        <mat-select formControlName="GradeId">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let grade of grades" [value]="grade.Id">
+            {{grade.Name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 col-xs-12">
+      <mat-form-field>
+        <mat-label>Marital Status</mat-label>
+        <mat-select formControlName="MaritalStatusId">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let marital of maritalStatus" [value]="marital.Id">
+            {{marital.Name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 col-xs-12">
+      <mat-form-field>
+        <mat-label>Religious Background</mat-label>
+        <mat-select formControlName="ReligiousBackgroundId">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let religiousType of religiousTypes" [value]="religiousType.Id">
+            {{religiousType.Name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 col-xs-12">
+      <mat-form-field>
+        <mat-label>Country Of Residence</mat-label>
+        <mat-select formControlName="CountryOfResidenceId">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let residenceCountry of residenceCountries" [value]="residenceCountry.Id">
+            {{residenceCountry.Name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 col-xs-12">
+      <mat-form-field>
+        <mat-label>Home Country</mat-label>
+        <mat-select formControlName="HomeCountryId">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let homeCountry of homeCountries" [value]="homeCountry.Id">
+            {{homeCountry.Name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 col-xs-12">
+      <mat-form-field>
+        <mat-label>Marriage Type</mat-label>
+        <mat-select formControlName="MarriageTypeId">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let marriageType of marriageTypes" [value]="marriageType.Id">
+            {{marriageType.Name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 col-xs-12">
+      <mat-form-field>
+        <mat-label>Qualifications</mat-label>
+        <label>
+          <input matInput placeholder="Qualifications" type="text" formControlName="Qualifications">
+        </label>
+      </mat-form-field>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 col-xs-12">
+      <mat-form-field>
+        <mat-label>Last Visit Date</mat-label>
+        <label>
+          <input matInput [matDatepicker]="pickerLastVisitDate" placeholder="Last Visit Date" formControlName="LastVisitDate">
+        </label>
+        <mat-datepicker-toggle matSuffix [for]="pickerLastVisitDate"></mat-datepicker-toggle>
+        <mat-datepicker #pickerLastVisitDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 col-xs-12">
+      <mat-form-field>
+        <mat-label>Marriage Anniversary</mat-label>
+        <label>
+          <input matInput [matDatepicker]="pickerMarriageAnniversary" placeholder="Marriage Anniversary" formControlName="MarriageAnniversary">
+        </label>
+        <mat-datepicker-toggle matSuffix [for]="pickerMarriageAnniversary"></mat-datepicker-toggle>
+        <mat-datepicker #pickerMarriageAnniversary></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+
+
+  <div class="row">
+
+    <div class="col-md-6 col-xs-12">
+      <mat-form-field>
+        <mat-label>Birthday</mat-label>
+        <label>
+          <input matInput [matDatepicker]="pickerBirthday" placeholder="Birthday" formControlName="Birthday">
+        </label>
+        <mat-datepicker-toggle matSuffix [for]="pickerBirthday"></mat-datepicker-toggle>
+        <mat-datepicker #pickerBirthday></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6 col-xs-12">
+        <div class="grid" style="display: flex;">
+          <div class="block">
+            <label>Marriage CertificatePic</label>
+            <br>
+            <img style="width: 200px" [src]="newMarriageCertificateImagePath" alt=""/>
+            <input type="file" (change)="uploadMarriageCertificateImage($event)"/>
+          </div>
+          <div class="block">
+            <label>Baptism CertificatePic</label>
+            <br>
+            <img style="width: 200px" [src]="newBaptismCertificateImagePath" alt=""/>
+            <input type="file" (change)="uploadBaptismCertificateImage($event)"/>
+          </div>
+          <div class="block">
+            <mat-checkbox formControlName="IsServant">IsServant</mat-checkbox>
+          </div>
+        </div>
+    </div>
+  </div>
+
+
+  <button mat-raised-button type="submit" class="btn btn-primary pull-right" 
+          [disabled]="!personForm.valid"
+          (click)="createOrUpdatePerson(personForm.value)">
+    {{btnActionTest}}
+  </button>
+  <div class="clearfix"></div>
+</form>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ChurchOrganizer</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" sizes="57x57" href="./assets/images/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="./assets/images/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="./assets/images/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="./assets/images/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="./assets/images/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="./assets/images/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="./assets/images/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="./assets/images/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="./assets/images/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="./assets/images/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="./assets/images/favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="./assets/images/favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Fonts -->
+  <style>
+    @font-face {
+      font-family: 'ClanProNews';
+      src: url('assets/fonts/ClanW05-News.eot'); /* IE9 Compat Modes */
+      src: url('assets/fonts/ClanW05-News.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+      url('assets/fonts/ClanW05-News.woff2') format('woff2'), /* Super Modern Browsers */
+      url('assets/fonts/ClanW05-News.woff') format('woff'), /* Pretty Modern Browsers */
+      url('assets/fonts/ClanW05-News.ttf')  format('truetype'), /* Safari, Android, iOS */
+      url('assets/fonts/ClanW05-News.svg#ClanProNews') format('svg'); /* Legacy iOS */
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: 'ClanProNews';
+      src: url('assets/fonts/ClanW05-NewsItalic.eot'); /* IE9 Compat Modes */
+      src: url('assets/fonts/ClanW05-NewsItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+      url('assets/fonts/ClanW05-NewsItalic.woff2') format('woff2'), /* Super Modern Browsers */
+      url('assets/fonts/ClanW05-NewsItalic.woff') format('woff'), /* Pretty Modern Browsers */
+      url('assets/fonts/ClanW05-NewsItalic.ttf')  format('truetype'), /* Safari, Android, iOS */
+      url('assets/fonts/ClanW05-NewsItalic.svg#ClanProNews') format('svg'); /* Legacy iOS */
+      font-weight: 400;
+      font-style: italic;
+    }
+    @font-face {
+      font-family: 'ClanPro';
+      src: url('assets/fonts/ClanW05-Medium.eot'); /* IE9 Compat Modes */
+      src: url('assets/fonts/ClanW05-Medium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+      url('assets/fonts/ClanW05-Medium.woff2') format('woff2'), /* Super Modern Browsers */
+      url('assets/fonts/ClanW05-Medium.woff') format('woff'), /* Pretty Modern Browsers */
+      url('assets/fonts/ClanW05-Medium.ttf')  format('truetype'), /* Safari, Android, iOS */
+      url('assets/fonts/ClanW05-Medium.svg#ClanPro') format('svg'); /* Legacy iOS */
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: 'ClanPro';
+      src: url('assets/fonts/ClanW05-MediumItalic.eot'); /* IE9 Compat Modes */
+      src: url('assets/fonts/ClanW05-MediumItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+      url('assets/fonts/ClanW05-MediumItalic.woff2') format('woff2'), /* Super Modern Browsers */
+      url('assets/fonts/ClanW05-MediumItalic.woff') format('woff'), /* Pretty Modern Browsers */
+      url('assets/fonts/ClanW05-MediumItalic.ttf')  format('truetype'), /* Safari, Android, iOS */
+      url('assets/fonts/ClanW05-MediumItalic.svg#ClanPro') format('svg'); /* Legacy iOS */
+      font-weight: 400;
+      font-style: italic;
+    }
+    @font-face {
+      font-family: 'ClanPro';
+      src: url('assets/fonts/ClanW05-Bold.eot'); /* IE9 Compat Modes */
+      src: url('assets/fonts/ClanW05-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+      url('assets/fonts/ClanW05-Bold.woff2') format('woff2'), /* Super Modern Browsers */
+      url('assets/fonts/ClanW05-Bold.woff') format('woff'), /* Pretty Modern Browsers */
+      url('assets/fonts/ClanW05-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+      url('assets/fonts/ClanW05-Bold.svg#ClanPro') format('svg'); /* Legacy iOS */
+      font-weight: 600;
+    }
+    @font-face {
+      font-family: 'ClanPro';
+      src: url('assets/fonts/ClanW05-NarrowMedium.eot'); /* IE9 Compat Modes */
+      src: url('assets/fonts/ClanW05-NarrowMedium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+      url('assets/fonts/ClanW05-NarrowMedium.woff2') format('woff2'), /* Super Modern Browsers */
+      url('assets/fonts/ClanW05-NarrowMedium.woff') format('woff'), /* Pretty Modern Browsers */
+      url('assets/fonts/ClanW05-NarrowMedium.ttf')  format('truetype'), /* Safari, Android, iOS */
+      url('assets/fonts/ClanW05-NarrowMedium.svg#ClanPro') format('svg'); /* Legacy iOS */
+      font-weight: 200;
+    }
+    @font-face {
+      font-family: 'MaterialIcons';
+      src: url('assets/fonts/MaterialIconFont/MaterialIcons-Regular.eot'); /* For IE6-8 */
+      src: local('MaterialIcons'),
+      local('MaterialIcons-Regular'),
+      url('./assets/fonts/MaterialIconFont/MaterialIcons-Regular.woff2') format('woff2'),
+      url('assets/fonts/MaterialIconFont/MaterialIcons-Regular.woff') format('woff'),
+      url('assets/fonts/MaterialIconFont/MaterialIcons-Regular.ttf') format('truetype'),
+      url('assets/fonts/MaterialIconFont/MaterialIcons-Regular.svg#MaterialIcons') format('svg');
+      font-weight: 400;
+      font-style: normal;
+    }
+    .loader {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+</head>
+<body>
+<app-root>
+  <div class="loader">
+    <img src="./assets/images/image-preload.gif" alt="">
+  </div>
+</app-root>
+</body>
+</html>

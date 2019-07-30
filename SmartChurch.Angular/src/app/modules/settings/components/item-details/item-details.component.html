@@ -1,0 +1,32 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h1 *ngIf="selectedItem?.Id; else prompt">
+        Editing {{originalName}}
+      </h1>
+      <ng-template #prompt>
+        <h1>Create</h1>
+      </ng-template>
+    </mat-card-title>
+  </mat-card-header>
+  <form #f="ngForm" (submit)="saved.emit(selectedItem)">
+    <mat-card-content>
+      <mat-form-field>
+        <input matInput type="text" name="name" placeholder="Name" [(ngModel)]="selectedItem.Name" required>
+      </mat-form-field>
+      <mat-form-field *ngIf="hasMoreInfo">
+        <input matInput type="text" name="description" placeholder="Description" [(ngModel)]="selectedItem.Description" required>
+      </mat-form-field>
+      <mat-slide-toggle
+        mat-line
+        *ngIf="hasMoreInfo"
+        [checked]="selectedItem.IsNotLinkableToPersons"
+        (change)="setValue($event)">
+      </mat-slide-toggle>
+    </mat-card-content>
+    <mat-card-actions>
+      <button type="submit" mat-button [disabled]="f.invalid">Save</button>
+      <button type="button" mat-button (click)="cancelled.emit(selectedItem)">Cancel</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

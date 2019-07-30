@@ -1,0 +1,321 @@
+//
+//// Custom Theming for Angular Material
+//// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+//// Plus imports for other components in your app.
+//// Include the common styles for Angular Material. We include this here so that you only
+//// have to load a single css file for Angular Material in your app.
+//// Be sure that you only ever include this mixin once!
+@include mat-core();
+//// Define the palettes for your theme using the Material Design palettes available in palette.scss
+//// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+//// hue. Available color palettes: https://material.io/design/color/
+$ClientApp-primary: mat-palette($mat-indigo);
+$ClientApp-accent: mat-palette($mat-pink, A200, A100, A400);
+
+//// The warn palette is optional (defaults to red).
+$ClientApp-warn: mat-palette($mat-red);
+//// Create the theme object (a Sass map containing all of the palettes).
+$ClientApp-theme: mat-light-theme($ClientApp-primary, $ClientApp-accent, $ClientApp-warn);
+//// Include theme styles for core and each component used in your app.
+//// Alternatively, you can import and @include the theme mixins for each component
+//// that you are using.
+@include angular-material-theme($ClientApp-theme);
+//
+///* You can add global styles to this file, and also import other style files */
+//Added this in the root style.css file for the entire app
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+//@font-face {
+//  font-family: 'Material Icons';
+//  font-style: normal;
+//  font-weight: 400;
+//  /* For IE6-8 */
+//  src: url('./assets/material-design-icons/iconfont/MaterialIcons-Regular.eot');
+//  src: local('Material Icons'),
+//  local('MaterialIcons-Regular'),
+//  url('./assets/material-design-icons/iconfont/MaterialIcons-Regular.woff2') format('woff2'),
+//  url('./assets/material-design-icons/iconfont/MaterialIcons-Regular.woff') format('woff'),
+//  url('./assets/material-design-icons/iconfont/MaterialIcons-Regular.ttf') format('truetype');
+//}
+//
+//.material-icons {
+//  font-family: 'Material Icons';
+//  font-weight: normal;
+//  font-style: normal;
+//  font-size: 24px; /* Preferred icon size */
+//  display: inline-block;
+//  line-height: 1;
+//  text-transform: none;
+//  letter-spacing: normal;
+//  word-wrap: normal;
+//  white-space: nowrap;
+//  direction: ltr;
+//
+//  /* Support for all WebKit browsers. */
+//  -webkit-font-smoothing: antialiased;
+//  /* Support for Safari and Chrome. */
+//  text-rendering: optimizeLegibility;
+//
+//  /* Support for Firefox. */
+//  -moz-osx-font-smoothing: grayscale;
+//
+//  /* Support for IE. */
+//  font-feature-settings: 'liga';
+//}
+
+*,
+*:after,
+*::before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-weight: normal;
+  margin: 0;
+  color: #525c65;
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.5rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#loader {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1, h2, h3, h4 {
+  font-weight: normal;
+}
+
+
+@import "app/scss/app";
+
+a {
+
+  text-decoration: none;
+  color: #000;
+
+  &:hover {
+    color: #f85032;
+  }
+}
+
+
+button.btn-primary {
+  color: #fff;
+  background-color: #f85032;
+  border-color: #e73827;
+  width: auto !important;
+  box-shadow: 0 2px 2px 0 rgba(244, 67, 54, .14), 0 3px 1px -2px rgba(244, 67, 54, .2), 0 1px 5px 0 rgba(244, 67, 54, .12);
+}
+
+
+.card {
+  border: 0;
+  margin-bottom: 30px;
+  margin-top: 70px;
+  border-radius: 6px;
+  color: #333;
+  background: #fff;
+  width: 100%;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+
+  [class*=card-header-]:not(.card-header-icon):not(.card-header-text):not(.card-header-image) {
+    border-radius: 3px;
+    margin-top: -20px;
+    padding: 15px;
+  }
+
+  .card-header-danger {
+    .card-icon, .card-text, &:not(.card-header-icon):not(.card-header-text) {
+      box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(244, 67, 54, 0.4);
+    }
+
+    .card-icon, .card-text, &:not(.card-header-icon):not(.card-header-text) {
+      background: linear-gradient(60deg, #f85032, #e73827);
+    }
+  }
+
+  &.bg-danger {
+    background: linear-gradient(60deg, #f85032, #e73827);
+  }
+
+  &.card-rotate.bg-danger {
+    .back, .front {
+      background: linear-gradient(60deg, #f85032, #e73827);
+    }
+  }
+
+  [class*=card-header-] {
+    position: relative;
+    top: -28px;
+    margin: 0 15px;
+    padding: 0;
+    color: #fff;
+
+    .card-title {
+      color: #fff;
+
+      a {
+        color: #fff;
+      }
+    }
+
+    .icon i {
+      color: #fff;
+    }
+  }
+
+  &[class*=bg-] {
+    color: #fff;
+
+    .card-title {
+      color: #fff;
+
+      a {
+        color: #fff;
+      }
+    }
+
+    .icon i {
+      color: #fff;
+    }
+  }
+
+  .card-header {
+    border-bottom: none;
+    background: 0 0;
+    z-index: 3 !important;
+  }
+}
+
+.card-header {
+  &:first-child {
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+  }
+
+  padding: .75rem 1.25rem;
+  margin-bottom: 0;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.card {
+  .card-header .card-title {
+    margin-bottom: 3px;
+  }
+
+  [class*=card-header-], &[class*=bg-] {
+    color: #fff;
+
+    .card-title {
+      color: #fff;
+
+      a {
+        color: #fff;
+      }
+    }
+
+    .icon i {
+      color: #fff;
+    }
+  }
+
+  .card-title {
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+
+  [class*=card-header-] .card-title + .card-category {
+    color: rgba(255, 255, 255, 0.62);
+  }
+
+  .card-header .card-category {
+    margin: 0;
+  }
+
+  .card-body {
+    position: relative;
+  }
+}
+
+.card-profile {
+  margin-top: 30px;
+  text-align: center;
+
+
+  .card-avatar {
+    margin: -50px auto 0;
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 0;
+
+    box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.14 * 4),
+    0 4px 25px 0px rgba(0, 0, 0, 0.14),
+    0 8px 10px -5px rgba(0, 0, 0, 0.14);
+
+    & + .card-body {
+      margin-top: 15px;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .card-body + .card-footer {
+    margin-top: -15px;
+  }
+
+  .card-footer {
+    .btn.btn-just-icon {
+      font-size: 20px;
+      padding: 12px 12px;
+      line-height: 1em;
+    }
+  }
+
+  &.card-plain {
+    .card-avatar {
+      margin-top: 0;
+    }
+  }
+
+  .card-header:not([class*="card-header-"]) {
+    background: transparent;
+  }
+
+  .card-avatar {
+    max-width: 130px;
+    max-height: 130px;
+  }
+}
+
+
+.reminders-container {
+  text-align: center;
+
+  .mat-card {
+    cursor: pointer;
+
+    &:hover {
+      -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+      box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+      border: 0;
+    }
+
+    strong {
+      margin: 1rem;
+      font-size: 3rem;
+      color: $color-brand;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+<app-header></app-header>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side" class="app-sidenav" opened="ture">
+    <nav>
+      <a mat-button
+         class="nav-link"
+         *ngFor="let link of links"
+         [routerLink]="link.path"
+         routerLinkActive="active">
+        <mat-icon>{{link.icon}}</mat-icon>
+        {{link.label}}
+      </a>
+    </nav>
+  </mat-sidenav>
+
+  <div class="main-content-container settings-container">
+    <router-outlet></router-outlet>
+  </div>
+</mat-sidenav-container>
+

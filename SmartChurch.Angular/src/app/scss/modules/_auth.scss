@@ -1,0 +1,59 @@
+.auth-page {
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:before {
+    content: '';
+    height: 1000px;
+    z-index: -1000;
+    // background: linear-gradient(to bottom right, rgba(#C02425, 0.8), rgba(#F0CB35, 0.4));
+    background: {
+      image: url('./assets/images/hero-bg.jpg');
+    };
+    -webkit-transform-origin: left bottom;
+    transform-origin: left bottom;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-transform: skew(0deg,-15deg);
+    transform: skew(0deg,-15deg);
+    float: left;
+    display: block;
+    margin-right: 1.69491525%;
+    width: 100%;
+  }
+
+  .auth-page-container {
+    background-color: $color-white;
+    padding: 6rem 3rem 4rem 3rem;
+    border-radius: 10px;
+    margin: 0 auto;
+    position: relative;
+    @media screen and (min-width: 789px){
+      width: 500px;
+    }
+    form.auth-form {
+      width: auto;
+    }
+    .auth-form > * {
+      display: block;
+    }
+    .meta {
+      text-align: left;
+      margin-bottom: 15px;
+      mat-icon {
+        position: relative;
+        top: 5px;
+        color: $color-info;
+      }
+    }
+  }
+}
+
+.auth-page.auth-page-reset {
+  button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,15 @@
+$padding: 20px;
+
+.settings-container {
+  padding: $padding;
+  mat-card {
+    padding: 0 0 10px 0;
+    mat-card-header {
+      padding: 16px;
+    }
+    .mat-list-base .mat-list-item, .mat-list-base .mat-list-option {
+      height: auto;
+      padding: 8px 16px;
+    }
+  }
+}

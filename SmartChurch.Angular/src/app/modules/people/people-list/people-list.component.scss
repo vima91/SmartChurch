@@ -1,0 +1,29 @@
+.people-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.people-header {
+  min-height: 64px;
+
+  button {
+    position: relative;
+    top: 25px;
+  }
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+.people-image {
+  background-size: cover;
+  margin-right: 5px;
+}

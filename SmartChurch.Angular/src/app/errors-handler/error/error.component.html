@@ -1,0 +1,9 @@
+<div class="error-container">
+  <div *ngIf="routeParams?.error">
+    <h4>ERROR</h4>
+    <h1>{{ routeParams?.error }}</h1>
+    <a mat-raised-button [routerLink]="'/'">
+      Go to Home
+    </a>
+  </div>
+</div>

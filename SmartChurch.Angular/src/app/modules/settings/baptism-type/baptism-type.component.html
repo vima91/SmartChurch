@@ -1,0 +1,10 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-md-6">
+      <app-items-list [title]="'Baptism Type'" [items]="baptismTypes" (selected)="selectBaptismType($event)" (deleted)="deleteBaptismType($event)"></app-items-list>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <app-item-details [item]="currentBaptismType" (saved)="savedBaptismType($event)" (cancelled)="cancel()"></app-item-details>
+    </div>
+  </div>
+</div>

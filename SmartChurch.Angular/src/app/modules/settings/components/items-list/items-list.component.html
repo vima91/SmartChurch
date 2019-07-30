@@ -1,0 +1,32 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h1>{{title}}</h1>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content *ngIf="_items; else loader">
+    <mat-list>
+      <mat-list-item *ngFor="let item of _items" (click)="selected.emit(item)">
+        <h3 mat-line>{{item.Name}}</h3>
+        <button mat-icon-button *ngIf="!readonly" (click)="deleted.emit(item);$event.stopImmediatePropagation();">
+          <mat-icon>close</mat-icon>
+        </button>
+        <p mat-line *ngIf="item.hasOwnProperty('Description')">
+          {{item.Description}}
+        </p>
+        <mat-slide-toggle
+          mat-line
+          disabled
+          *ngIf="item.hasOwnProperty('IsNotLinkableToPersons')"
+          [checked]="item.IsNotLinkableToPersons">
+        </mat-slide-toggle>
+
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
+
+
+<ng-template #loader>
+  <mat-spinner></mat-spinner>
+</ng-template>

@@ -1,0 +1,5 @@
+<mat-nav-list id="header-links">
+  <div class="hvr-effect" *ngFor="let link of links">
+    <a mat-list-item [routerLink]="[link.path]" > {{ link.label }} </a>
+  </div>
+</mat-nav-list>
