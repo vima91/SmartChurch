@@ -1,0 +1,12 @@
+
+<h2 mat-dialog-title>Withdarw From Bank </h2>
+<mat-dialog-content [formGroup]="form">
+    <mat-form-field style="width: 100%">
+        <input matInput placeholder="Withdrawal Amount" type="text" formControlName="WithdrawalAmount">
+        <mat-error *ngIf="hasError('WithdrawalAmount', 'required')">Withdrawal amount is required</mat-error>
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button class="mat-raised-button" (click)="close()">Close</button>
+    <button class="mat-raised-button mat-primary" [disabled]="!form.valid" (click)="save()">Save</button>
+</mat-dialog-actions>

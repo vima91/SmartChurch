@@ -1,0 +1,26 @@
+
+<h2 mat-dialog-title>Deposite To Bank </h2>
+<mat-dialog-content [formGroup]="form">
+    <mat-form-field style="width: 100%">
+        <input matInput placeholder="Receipt number" type="text" formControlName="ReceiptNumber">
+        <mat-error *ngIf="hasError('ReceiptNumber', 'required')">Receipt number is required</mat-error>
+    </mat-form-field>
+    <mat-form-field style="width: 100%">
+        <input matInput [matDatepicker]="picker" placeholder="Choose receipt date" formControlName="ReceiptDate"
+            id="ReceiptDate" readonly (click)="picker.open()">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="hasError('ReceiptDate', 'required')">Receipt date is required</mat-error>
+    </mat-form-field>
+    <mat-form-field style="width: 100%">
+        <input matInput placeholder="Amount" type="text" formControlName="Amount">
+        <mat-error *ngIf="hasError('Amount', 'required')">Amount is required</mat-error>
+    </mat-form-field>
+    <mat-form-field style="width: 100%">
+        <textarea matInput placeholder="Comment" formControlName="Comment"></textarea>
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button class="mat-raised-button" (click)="close()">Close</button>
+    <button class="mat-raised-button mat-primary" [disabled]="!form.valid" (click)="save()">Save</button>
+</mat-dialog-actions>

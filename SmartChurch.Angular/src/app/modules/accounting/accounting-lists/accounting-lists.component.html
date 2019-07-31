@@ -1,0 +1,65 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <button mat-button class="btn btn-secondary pull-right"
+                            (click)="addExpense()">Add Expense </button>
+                        <h4 class="card-title">Accounting</h4>
+                        <p class="card-category">Bank, Church Balance </p>
+                    </div>
+                    <div class="card-body">
+                        <mat-card>
+                            <mat-card-content>
+                                <div class="reminders-container">
+                                    <div class="row">
+                                        <div class="col-md-6 col-xs-12">
+                                            <mat-card>
+                                                <mat-card-title class="mat-card-title">Bank Balance</mat-card-title>
+                                                <mat-card-content>
+                                                    <strong>
+                                                        <div>
+                                                            {{balance.BankBalance}}
+                                                        </div>
+                                                        <div>
+
+                                                        </div>
+                                                    </strong>
+                                                </mat-card-content>
+                                                <mat-card-actions>
+                                                    <button mat-button class="btn btn-primary"
+                                                        (click)="openWithdrawFromBank()">Withdraw From Bank</button>
+                                                    <button mat-button class="btn btn-secondary"
+                                                        (click)="openDepoisteToBank()">Depoiste To Bank</button>
+                                                </mat-card-actions>
+                                            </mat-card>
+                                        </div>
+                                        <div class="col-md-6 col-xs-12">
+                                            <mat-card>
+                                                <mat-card-title class="mat-card-title">Church Balance</mat-card-title>
+                                                <mat-card-content>
+                                                    <strong>
+                                                        <div>{{balance.ChurchBalance}}</div>
+                                                    </strong>
+                                                </mat-card-content>
+                                                <mat-card-actions>
+                                                    <button mat-button class="btn btn-primary"
+                                                        (click)="openWithdrawFromBank()">Withdraw From Bank</button>
+                                                </mat-card-actions>
+                                            </mat-card>
+                                        </div>
+                                    </div>
+                                </div>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #loader>
+    <mat-spinner></mat-spinner>
+</ng-template>
