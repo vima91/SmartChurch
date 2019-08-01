@@ -126,6 +126,7 @@ namespace SmartChurch
             {
                 using (var context = serviceScope.ServiceProvider.GetService<SiriusDbContext>())
                 {
+                    context.Database.Migrate();
                     DataSeeder.Seed(serviceProvider, context);
                 }
             }
