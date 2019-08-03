@@ -7,3 +7,7 @@
 /SmartChurch.CoreApi/.vs/SmartChurch/v16/Server/sqlite3
 /SmartChurch.CoreApi/SmartChurch/bin/Release/netcoreapp2.2
 /SmartChurch.CoreApi/SmartChurch/Properties/PublishProfiles
+.vs/
+bin/
+obj/
+SmartChurch.CoreApi/.vs/

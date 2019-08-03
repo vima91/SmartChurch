@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>Add / Edit Service </h2>
+<mat-dialog-content [formGroup]="form">
+    <mat-form-field style="width: 100%">
+        <input matInput placeholder="Name" type="text" formControlName="Name">
+        <mat-error *ngIf="hasError('Name', 'required')">Name is required</mat-error>
+    </mat-form-field>
+    <mat-form-field style="width: 100%">
+        <mat-select placeholder="Service Type" formControlName="ServiceTypeId">
+            <mat-option *ngFor="let item of serviceTypes" [value]="item.Id">
+                {{item.Name}}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="hasError('ServiceTypeId', 'required')">Service type is required</mat-error>
+    </mat-form-field>
+    <mat-form-field style="width: 100%">
+        <input matInput [matDatepicker]="picker" placeholder="From" formControlName="From" id="From" readonly
+            (click)="picker.open()">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="hasError('From', 'required')">From is required</mat-error>
+    </mat-form-field>
+    <mat-form-field style="width: 100%">
+        <input matInput [matDatepicker]="pickerTo" placeholder="To" formControlName="To" id="To" readonly
+            (click)="picker.open()">
+        <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+        <mat-datepicker #pickerTo></mat-datepicker>
+        <mat-error *ngIf="hasError('To', 'required')">To is required</mat-error>
+    </mat-form-field>
+    <mat-form-field style="width: 100%">
+        <input matInput placeholder="Weekday" type="text" formControlName="Weekday">
+        <mat-error *ngIf="hasError('Weekday', 'required')">Weekday is required</mat-error>
+    </mat-form-field>
+    <mat-form-field style="width: 100%">
+        <input matInput style="display: none">
+        <mat-checkbox formControlName="IsWeekly">IsWeekly</mat-checkbox>
+        <mat-error *ngIf="hasError('IsWeekly', 'required')">IsWeekly is required</mat-error>
+    </mat-form-field>
+    <mat-form-field style="width: 100%">
+        <textarea matInput placeholder="Comment" formControlName="Comment"></textarea>
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button class="mat-raised-button" (click)="close()">Close</button>
+    <button class="mat-raised-button mat-primary" [disabled]="!form.valid" (click)="save()">Save</button>
+</mat-dialog-actions>
