@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  BASE_URL: 'https://smartchurch-001-site1.itempurl.com'
+  BASE_URL: 'https://202.182.122.130:5001'
 };

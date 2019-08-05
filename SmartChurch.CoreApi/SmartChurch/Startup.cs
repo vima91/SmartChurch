@@ -127,6 +127,14 @@ namespace SmartChurch
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
+            // Invoke the UseForwardedHeaders middleware and configure it to forward the X-Forwarded-For and X-Forwarded-Proto headers.
+            // NOTE: This must be put BEFORE calling UseAuthentication or similar authentication scheme middlewares.
+            // ref.: https://www.ryadel.com/en/asp-net-core-2-publish-deploy-web-application-linux-centos-tutorial-guide-nginx
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
+
             using (var serviceScope = app.ApplicationServices
                 .GetRequiredService<IServiceScopeFactory>()
                 .CreateScope())
