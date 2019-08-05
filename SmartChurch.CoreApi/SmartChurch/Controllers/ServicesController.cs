@@ -116,6 +116,12 @@ namespace SmartChurch.Controllers
             return Ok(_serviceLeaderService.GetAll());
         }
 
+        [HttpGet("{serviceId}")]
+        public ActionResult<IEnumerable<ServiceLeaderDto>> ServiceLeadersByService(int serviceId)
+        {
+            return Ok(_serviceLeaderService.Find(s => s.ServiceId == serviceId));
+        }
+
         [HttpGet("{id}")]
         public ActionResult<ServiceLeaderDto> GetServiceLeader(int id)
         {
@@ -179,6 +185,12 @@ namespace SmartChurch.Controllers
         public ActionResult<IEnumerable<ServiceSubscriptionDto>> ServiceSubscriptions()
         {
             return Ok(_serviceSubscriptionService.GetAll());
+        }
+
+        [HttpGet("{serviceId}")]
+        public ActionResult<IEnumerable<ServiceSubscriptionDto>> ServiceSubscriptionsByService(int serviceId)
+        {
+            return Ok(_serviceSubscriptionService.Find(s => s.ServiceId == serviceId));
         }
 
         [HttpGet("{id}")]
