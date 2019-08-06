@@ -5,17 +5,17 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { HttpService } from 'src/app/API/http.service';
 
 @Component({
-  selector: 'app-service-leader-edit',
-  templateUrl: './service-leader-edit.component.html',
-  styleUrls: ['./service-leader-edit.component.scss']
+  selector: 'app-service-subscription-edit',
+  templateUrl: './service-subscription-edit.component.html',
+  styleUrls: ['./service-subscription-edit.component.scss']
 })
-export class ServiceLeaderEditComponent implements OnInit {
+export class ServiceSubscriptionEditComponent implements OnInit {
   form: FormGroup;
-  leaders: any[];
+  subscriptions: any[];
 
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<ServiceLeaderEditComponent>,
+    private dialogRef: MatDialogRef<ServiceSubscriptionEditComponent>,
     private settingsService: HttpService,
     @Inject(MAT_DIALOG_DATA) data) {
     this.form = this.fb.group({
@@ -32,8 +32,8 @@ export class ServiceLeaderEditComponent implements OnInit {
   getPerson() {
 
     this.settingsService.getAll(`${environment.BASE_URL}/api/person/persons`)
-      .subscribe(leaders => {
-        this.leaders = leaders.filter(x => x.IsServant);
+      .subscribe(subscriptions => {
+        this.subscriptions = subscriptions.filter(x => x.IsServant != true);
       });
 
   }

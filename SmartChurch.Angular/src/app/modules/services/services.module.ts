@@ -9,6 +9,9 @@ import { ServiceLeaderEditComponent } from './components/service-leader-edit/ser
 import { ServiceListComponent } from './service-list/service-list.component';
 import { MaterialModule } from 'src/app/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ServiceLeaderListComponent } from './service-leader-list/service-leader-list.component';
+import { ServiceSubscriptionListComponent } from './service-subscription-list/service-subscription-list.component';
+import { ServiceSubscriptionEditComponent } from './components/service-subscription-edit/service-subscription-edit.component';
 
 @NgModule({
   imports: [
@@ -19,7 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     ServicesRoutingModule
   ],
-  entryComponents:[ServiceEditComponent, ServiceLeaderEditComponent],
-  declarations: [ServicesComponent, ServiceEditComponent, ServiceLeaderEditComponent, ServiceListComponent]
+  entryComponents:[ServiceEditComponent, ServiceLeaderEditComponent,ServiceSubscriptionEditComponent],
+  declarations: [ServicesComponent, ServiceEditComponent, ServiceLeaderEditComponent, ServiceListComponent, ServiceLeaderListComponent, ServiceSubscriptionListComponent, ServiceSubscriptionEditComponent]
 })
 export class ServicesModule { }

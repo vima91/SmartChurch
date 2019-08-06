@@ -1,12 +1,12 @@
-<h2 mat-dialog-title>Add / Edit Leader </h2>
+<h2 mat-dialog-title>Add / Edit Subscription </h2>
 <mat-dialog-content [formGroup]="form">
     <mat-form-field style="width: 100%">
         <mat-select placeholder="Leader" formControlName="PersonId">
-            <mat-option *ngFor="let item of leaders" [value]="item.Id">
+            <mat-option *ngFor="let item of subscriptions" [value]="item.Id">
                 {{item.Name}}
             </mat-option>
         </mat-select>
-        <mat-error *ngIf="hasError('PersonId', 'required')">Leader is required</mat-error>
+        <mat-error *ngIf="hasError('PersonId', 'required')">Subscription is required</mat-error>
     </mat-form-field>
 
 </mat-dialog-content>

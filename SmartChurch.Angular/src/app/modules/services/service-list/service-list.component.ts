@@ -12,7 +12,7 @@ import { ServiceEditComponent } from '../components/service-edit/service-edit.co
   styleUrls: ['./service-list.component.scss']
 })
 export class ServiceListComponent implements OnInit {
-  displayedColumns: string[] = ['Name', 'From', 'To', 'IsWeekly', 'Weekday', 'Comment', 'edit', 'delete'];
+  displayedColumns: string[] = ['Name', 'From', 'To', 'IsWeekly', 'Weekday', 'Comment', 'ViewLeaders', 'ViewSubscription', 'Actions'];
   dataSource: MatTableDataSource<IService>;
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;

@@ -77,21 +77,29 @@
                                             <mat-cell *matCellDef="let row"> {{row.Comment}} </mat-cell>
                                         </ng-container>
 
-                                        <!-- Delete Column -->
-                                        <ng-container matColumnDef="edit">
-                                            <mat-header-cell *matHeaderCellDef mat-sort-header> Edit Service
+                                        <!-- View Leaders -->
+                                        <ng-container matColumnDef="ViewLeaders">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header> Leaders
+                                            </mat-header-cell>
+                                            <mat-cell *matCellDef="let row">
+                                                <a [routerLink]="['/services/leaders', row.Id,row.Name]">View Leaders</a></mat-cell>
+                                        </ng-container>
+
+                                          <!-- View Subscription -->
+                                          <ng-container matColumnDef="ViewSubscription">
+                                                <mat-header-cell *matHeaderCellDef mat-sort-header> Subscriptions
+                                                </mat-header-cell>
+                                                <mat-cell *matCellDef="let row">
+                                                    <a [routerLink]="['/services/subscriptions', row.Id,row.Name]">View Subscriptions</a></mat-cell>
+                                            </ng-container>
+
+                                        <!-- Delete Update Column -->
+                                        <ng-container matColumnDef="Actions">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header> Actions
                                             </mat-header-cell>
                                             <mat-cell *matCellDef="let row">
                                                 <mat-icon (click)="editService(row)"
                                                     style="color: #f85032; cursor: pointer;">edit</mat-icon>
-                                            </mat-cell>
-                                        </ng-container>
-
-                                        <!-- Delete Column -->
-                                        <ng-container matColumnDef="delete">
-                                            <mat-header-cell *matHeaderCellDef mat-sort-header> Remove Service
-                                            </mat-header-cell>
-                                            <mat-cell *matCellDef="let row">
                                                 <mat-icon (click)="removeService(row)"
                                                     style="color: #f85032; cursor: pointer;">delete</mat-icon>
                                             </mat-cell>
