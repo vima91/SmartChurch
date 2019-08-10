@@ -1,4 +1,5 @@
-﻿using SmartChurch.DataModel.Models.Dtos;
+﻿using System;
+using SmartChurch.DataModel.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using AutoMapper;
@@ -40,7 +41,17 @@ namespace SmartChurch.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<ServiceDto>> Services()
         {
-            return Ok(_churchServicesService.GetAll());
+            var services = _churchServicesService.GetAll();
+            foreach (var service in services)
+            {
+                if (service.Weekday != null)
+                {
+                    DayOfWeek dayOfWeek = (DayOfWeek) service.Weekday;
+                    service.DayOfWeek = dayOfWeek.ToString();
+                }
+            }
+
+            return Ok();
         }
 
         [HttpGet("{id}")]

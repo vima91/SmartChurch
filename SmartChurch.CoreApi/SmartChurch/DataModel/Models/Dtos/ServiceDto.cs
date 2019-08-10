@@ -14,5 +14,6 @@ namespace SmartChurch.DataModel.Models.Dtos
         public int? Weekday { get; set; }
         public int ServiceTypeId { get; set; }
         public string Comment { get; set; }
+        public string DayOfWeek { get; set; }
     }
 }
