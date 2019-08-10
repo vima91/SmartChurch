@@ -56,9 +56,9 @@ namespace SmartChurch.DataAccess
             foreach (var entity in addedEntities)
             {
                 entity.Entity.CreationUser = UserResolverService.GetUser();
-                entity.Entity.CreationDate = DateTime.Now;
+                entity.Entity.CreationDate = DateTime.UtcNow;
                 entity.Entity.ModificationUser = UserResolverService.GetUser();
-                entity.Entity.ModificationDate = DateTime.Now;
+                entity.Entity.ModificationDate = DateTime.UtcNow;
                 entity.Entity.IsDeleted = false;
             }
 
@@ -67,7 +67,7 @@ namespace SmartChurch.DataAccess
             foreach (var entity in modifiedEntities)
             {
                 entity.Entity.ModificationUser= UserResolverService.GetUser();
-                entity.Entity.ModificationDate= DateTime.Now;
+                entity.Entity.ModificationDate= DateTime.UtcNow;
             }
 
             var deletedEntities = ChangeTracker.Entries<SiriusDeletableEntity>()

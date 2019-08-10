@@ -79,6 +79,17 @@ namespace SmartChurch.Infrastructure.Helpers
             return new DateTime(date.Year, date.Month, date.Day, 23, 59, 59);
         }
 
+        public static DateTime StartOfWeek(this DateTime dt, DayOfWeek startOfWeek = DayOfWeek.Monday)
+        {
+            int diff = (7 + (dt.DayOfWeek - startOfWeek)) % 7;
+            return dt.AddDays(-1 * diff).Date;
+        }
+
+        public static DateTime EndOfWeek(this DateTime dt, DayOfWeek startOfWeek = DayOfWeek.Monday)
+        {
+            return StartOfWeek(dt, startOfWeek).AddDays(6);
+        }
+
         public static DateTime StartOfMonth(this DateTime date)
         {
             return new DateTime(date.Year, date.Month, 1, 0, 0, 0);

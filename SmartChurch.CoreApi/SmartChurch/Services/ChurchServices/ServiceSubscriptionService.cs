@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using SmartChurch.DataAccess;
 using SmartChurch.DataModel.Models.Dtos;
@@ -10,7 +11,7 @@ namespace SmartChurch.Services.ChurchServices
     {
         private readonly PersonService _personService;
         private readonly ChurchServicesService _churchServicesService;
-
+        
         public ServiceSubscriptionService(SiriusDbContext context, IMapper mapper,
             PersonService personService, ChurchServicesService churchServicesService)
             : base(context, mapper)
@@ -37,5 +38,11 @@ namespace SmartChurch.Services.ChurchServices
             return base.Create(dto);
         }
 
+        public List<ServiceSubscriptionDto> GetAllByServiceId(int serviceId)
+        {
+            var subscriptions = Context.ServiceSubscriptions.Where(s => s.ServiceId == serviceId);
+            var mappedSubscriptions = Mapper.Map<List<ServiceSubscriptionDto>>(subscriptions);
+            return mappedSubscriptions;
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using AutoMapper;
 using SmartChurch.DataAccess;
 using SmartChurch.DataModel.Models.Dtos;
@@ -71,6 +72,12 @@ namespace SmartChurch.Controllers
             }
             var expenseCreationResult = _expenseService.Create(dto);
             return Ok(expenseCreationResult);
+        }
+
+        [HttpGet]
+        public ActionResult<List<ExpenseDto>> GetExpenses(DateTime? from, DateTime? to)
+        {
+            return Ok(_expenseService.GetExpenses(from, to));
         }
     }
 }
