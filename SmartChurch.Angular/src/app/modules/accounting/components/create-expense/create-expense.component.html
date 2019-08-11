@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>Add Expense </h2>
 <mat-dialog-content [formGroup]="form">
     <mat-form-field style="width: 100%">
-        <mat-select formControlName="ExpenseTypeId">
+        <mat-select placeholder="Choose expense type" formControlName="ExpenseTypeId">
             <mat-option *ngFor="let item of expenseTypes" [value]="item.Id">
                 {{item.Name}}
             </mat-option>

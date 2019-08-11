@@ -7,4 +7,5 @@ export interface IService {
     Weekday: number;
     ServiceTypeId: number;
     Comment: string;
+    DayOfWeek?: string;
 }

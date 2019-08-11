@@ -36,9 +36,9 @@ export class ServiceListComponent implements OnInit {
     this.dataSource = new MatTableDataSource<IService>();
     this.httpService.getAll(`${environment.BASE_URL}/api/services/services`)
       .subscribe(services => {
-        this.services = services;
+        this.services = services || [];
         // Assign the data to the data source for the table to render
-        this.dataSource = new MatTableDataSource(services);
+        this.dataSource = new MatTableDataSource(this.services);
         this.isLoading = !this.isLoading;
       });
   }
@@ -69,7 +69,7 @@ export class ServiceListComponent implements OnInit {
     dialogConfig.data = {};
     this.dialog.open(ServiceEditComponent, dialogConfig).afterClosed().subscribe((result: IService) => {
       if (result != undefined) {
-        this.createOrUpdatePerson(result);
+        this.createOrUpdateService(result);
       }
     });
   }
@@ -83,7 +83,7 @@ export class ServiceListComponent implements OnInit {
     dialogConfig.data = service;
     this.dialog.open(ServiceEditComponent, dialogConfig).afterClosed().subscribe((result: IService) => {
       if (result != undefined) {
-        this.createOrUpdatePerson(result);
+        this.createOrUpdateService(result);
       }
     });
   }
@@ -99,7 +99,7 @@ export class ServiceListComponent implements OnInit {
         this.getServices();
       });
   }
-  createOrUpdatePerson(service: IService) {
+  createOrUpdateService(service: IService) {
     if (service.Id != 0) {
       return this.httpService.update(`${environment.BASE_URL}/api/services/updateservice/${service.Id}`, service)
         .subscribe((resp) => {

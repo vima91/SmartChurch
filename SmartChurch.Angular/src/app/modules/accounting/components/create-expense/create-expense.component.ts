@@ -20,6 +20,7 @@ export class CreateExpenseComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
+      Id: 0,
       ExpenseTypeId: new FormControl('', [Validators.required]),
       ExpenseDate: new FormControl(new Date(), [Validators.required]),
       Amount: new FormControl('', [Validators.required]),

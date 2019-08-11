@@ -21,7 +21,7 @@
     </mat-form-field>
     <mat-form-field style="width: 100%">
         <input matInput [matDatepicker]="pickerTo" placeholder="To" formControlName="To" id="To" readonly
-            (click)="picker.open()">
+            (click)="pickerTo.open()">
         <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
         <mat-datepicker #pickerTo></mat-datepicker>
         <mat-error *ngIf="hasError('To', 'required')">To is required</mat-error>

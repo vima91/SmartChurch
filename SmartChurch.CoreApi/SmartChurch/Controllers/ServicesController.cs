@@ -51,7 +51,7 @@ namespace SmartChurch.Controllers
                 }
             }
 
-            return Ok();
+            return Ok(services);
         }
 
         [HttpGet("{id}")]

@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderLinksComponent implements OnInit {
 
   links = [
+    {path: '/attendances', label: 'Attendances'},
     {path: '/accounting', label: 'Accounting'},
     {path: '/services', label: 'Services'},
     {path: '/reminders', label: 'Reminders'},

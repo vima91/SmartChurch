@@ -26,6 +26,7 @@ namespace SmartChurch.Infrastructure
 
             services.AddTransient<ChurchServicesService>();
             services.AddTransient<PersonService>();
+            services.AddTransient<ServiceSubscriptionService>();
 
             #endregion
         }

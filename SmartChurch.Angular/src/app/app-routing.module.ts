@@ -9,6 +9,7 @@ const appRoutes: Routes = [
   { path: 'reminders', loadChildren: './modules/reminders/reminders.module#RemindersModule'},
   { path: 'people', loadChildren: './modules/people/people.module#PeopleModule'},
   { path: 'settings', loadChildren: './modules/settings/settings.module#SettingsModule' },
+  { path: 'attendances', loadChildren: './modules/attendances/attendances.module#AttendancesModule' },
   { path: '**', component: PageNotFoundComponent }
 ];
 

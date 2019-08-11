@@ -4,8 +4,6 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-danger">
-                        <button mat-button class="btn btn-secondary pull-right"
-                            (click)="addExpense()">Add Expense </button>
                         <h4 class="card-title">Accounting</h4>
                         <p class="card-category">Bank, Church Balance </p>
                     </div>
@@ -28,8 +26,6 @@
                                                     </strong>
                                                 </mat-card-content>
                                                 <mat-card-actions>
-                                                    <button mat-button class="btn btn-primary"
-                                                        (click)="openWithdrawFromBank()">Withdraw From Bank</button>
                                                     <button mat-button class="btn btn-secondary"
                                                         (click)="openDepoisteToBank()">Depoiste To Bank</button>
                                                 </mat-card-actions>
@@ -44,13 +40,125 @@
                                                     </strong>
                                                 </mat-card-content>
                                                 <mat-card-actions>
-                                                    <button mat-button class="btn btn-primary"
+                                                    <button mat-button class="btn btn-secondary"
                                                         (click)="openWithdrawFromBank()">Withdraw From Bank</button>
                                                 </mat-card-actions>
                                             </mat-card>
                                         </div>
                                     </div>
                                 </div>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Expenses</h4>
+                    </div>
+                    <div class="card-body">
+                        <mat-card>
+                            <mat-card-content>
+                                <div class="people-header">
+                                    <div class="row">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-3">
+                                            <mat-form-field style="width: 100%">
+                                                <input matInput #fromInput [matDatepicker]="picker" placeholder="From"
+                                                    [(ngModel)]="searchForm.from" id="From" readonly (click)="picker.open()">
+                                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker></mat-datepicker>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <mat-form-field style="width: 100%">
+                                                <input matInput #toInput [matDatepicker]="pickerTo" placeholder="To"
+                                                    [(ngModel)]="searchForm.to" id="To" readonly (click)="pickerTo.open()">
+                                                <mat-datepicker-toggle matSuffix [for]="pickerTo">
+                                                </mat-datepicker-toggle>
+                                                <mat-datepicker #pickerTo></mat-datepicker>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-3">
+                                                <button type="button" mat-raised-button class="btn btn-primary"
+                                                (click)="getExpenses()">Search
+                                            </button>
+                                            &nbsp; &nbsp; &nbsp; 
+                                            <button type="button" mat-raised-button class="btn btn-primary"
+                                            (click)="resetForm()">Clear
+                                        </button>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10 col-xs-12">
+                                            <mat-form-field>
+                                                <label>
+                                                    <input matInput (keyup)="applyFilter($event)"
+                                                        placeholder="Filter Expenses">
+                                                </label>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-2 col-xs-12 text-right">
+                                            <button type="button" mat-raised-button class="btn btn-secondary"
+                                                (click)="addExpense()">Create Expense
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="people-container" *ngIf="isLoading; else loader">
+
+                                    <mat-table [dataSource]="dataSource" matSort matSortActive="ExpenseTypeName"
+                                        matSortDirection="asc">
+
+                                        <!-- ExpenseTypeName Column -->
+                                        <ng-container matColumnDef="ExpenseTypeName">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header> Expense Typ eName
+                                            </mat-header-cell>
+                                            <mat-cell *matCellDef="let row">
+                                                {{row.ExpenseTypeName}}
+                                            </mat-cell>
+                                        </ng-container>
+
+                                        <!-- Amount Column -->
+                                        <ng-container matColumnDef="Amount">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header> Amount
+                                            </mat-header-cell>
+                                            <mat-cell *matCellDef="let row">
+                                                {{row.Amount}}
+                                            </mat-cell>
+                                        </ng-container>
+
+                                        <!-- ExpenseDate Column -->
+                                        <ng-container matColumnDef="ExpenseDate">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header> Expense Date
+                                            </mat-header-cell>
+                                            <mat-cell *matCellDef="let row">
+                                                {{row.ExpenseDate}}
+                                            </mat-cell>
+                                        </ng-container>
+
+
+                                        <!-- Comment Column -->
+                                        <ng-container matColumnDef="Comment">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header> Comment
+                                            </mat-header-cell>
+                                            <mat-cell *matCellDef="let row">
+                                                {{row.Comment}}
+                                            </mat-cell>
+                                        </ng-container>
+
+                                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                        <mat-row *matRowDef="let row; columns: displayedColumns;">
+                                        </mat-row>
+                                    </mat-table>
+
+                                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                                </div>
+
                             </mat-card-content>
                         </mat-card>
                     </div>
