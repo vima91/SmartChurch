@@ -15,30 +15,12 @@ namespace SmartChurch.Services
         private readonly ChurchServicesService _churchServicesService;
         private readonly ServiceSubscriptionService _serviceSubscriptionService;
 
-        public AttendanceService(SiriusDbContext context, IMapper mapper, 
+        public AttendanceService(SiriusDbContext context, IMapper mapper,
             PersonService personService, ChurchServicesService churchServicesService, ServiceSubscriptionService serviceSubscriptionService) : base(context, mapper)
         {
             _personService = personService;
             _churchServicesService = churchServicesService;
             _serviceSubscriptionService = serviceSubscriptionService;
-        }
-        
-        public override AttendanceDto Create(AttendanceDto dto)
-        {
-            var person = _personService.GetById(dto.PersonId);
-            var service = _churchServicesService.GetById(dto.ServiceId);
-
-            if (person == null)
-            {
-                throw new KeyNotFoundException($"Person with Id {dto.PersonId} does not exist.");
-            }
-
-            if (service == null)
-            {
-                throw new KeyNotFoundException($"Service with Id {dto.ServiceId} does not exist.");
-            }
-
-            return base.Create(dto);
         }
 
         public override AttendanceDto Update(int id, AttendanceDto dto)
@@ -60,11 +42,15 @@ namespace SmartChurch.Services
             {
                 dto = Create(dto);
                 id = dto.Id;
+                dto.IsAttended = true;
                 Context.SaveChanges();
+                return dto;
             }
             else if (!dto.IsAttended)
             {
-                base.Delete(id);
+                var thisAttendance = Context.Attendances.Single(s => s.Id == id);
+                Context.Attendances.Remove(thisAttendance);
+                Context.SaveChanges();
                 return new AttendanceDto();
             }
 
@@ -91,12 +77,14 @@ namespace SmartChurch.Services
                 throw new ServiceException();
             }
 
-
             var subscribedPeople = _serviceSubscriptionService.GetAllByServiceId(serviceId);
-            var availableAttendances = Context.Attendances
-                .Where(s => s.ServiceId == serviceId &&
-                            s.DateOfEvent > thisService.From &&
-                            s.DateOfEvent < thisService.To);
+
+            var availableAttendancesByService = Context.Attendances
+                .Where(s => s.ServiceId == serviceId);
+
+            var availableAttendances = availableAttendancesByService.Where(s =>
+                s.DateOfEvent >= thisService.From &&
+                s.DateOfEvent <= thisService.To);
 
             foreach (var dto in subscribedPeople)
             {
@@ -120,7 +108,7 @@ namespace SmartChurch.Services
                 thisAttendance.ServiceId = dto.ServiceId;
                 thisAttendance.PersonName = dto.PersonName;
                 thisAttendance.ServiceName = dto.ServiceName;
-                
+
                 attendances.Add(thisAttendance);
             }
 

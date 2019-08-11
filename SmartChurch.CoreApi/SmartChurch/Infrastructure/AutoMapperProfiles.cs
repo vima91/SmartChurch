@@ -33,7 +33,7 @@ namespace SmartChurch.Infrastructure
             CreateMap<ServiceLeader, ServiceLeaderDto>().ReverseMap().IgnoreDeletableAuditingFields();
             CreateMap<ServiceSubscription, ServiceSubscriptionDto>().ReverseMap().IgnoreDeletableAuditingFields();
 
-            CreateMap<Attendance, AttendanceDto>().ReverseMap().IgnoreDeletableAuditingFields();
+            CreateMap<Attendance, AttendanceDto>().ReverseMap().IgnoreAuditingFields();
         }
     }
 }

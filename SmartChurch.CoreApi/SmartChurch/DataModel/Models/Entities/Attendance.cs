@@ -4,7 +4,7 @@ using SmartChurch.DataModel.Models.Core;
 
 namespace SmartChurch.DataModel.Models.Entities
 {
-    public class Attendance : SiriusDeletableEntity
+    public class Attendance : SiriusEntity
     {
         [Required]
         public int ServiceId { get; set; }
