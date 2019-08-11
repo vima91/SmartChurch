@@ -56,7 +56,13 @@ namespace SmartChurch.Services
                 throw new KeyNotFoundException($"Service with Id {dto.ServiceId} does not exist.");
             }
 
-            if (!dto.IsAttended)
+            if (id == 0)
+            {
+                dto = Create(dto);
+                id = dto.Id;
+                Context.SaveChanges();
+            }
+            else if (!dto.IsAttended)
             {
                 base.Delete(id);
                 return new AttendanceDto();
@@ -66,7 +72,7 @@ namespace SmartChurch.Services
 
             if (existingAttendance != null)
             {
-                if (!dto.Comment.Equals(existingAttendance.Comment))
+                if (dto.Comment != existingAttendance.Comment)
                 {
                     return base.Update(id, dto);
                 }

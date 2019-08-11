@@ -11,5 +11,6 @@ namespace SmartChurch.DataModel.Models.Dtos
         public decimal Amount { get; set; }
         public string Comment { get; set; }
         public int ExpenseTypeId { get; set; }
+        public string ExpenseTypeName { get; set; }
     }
 }

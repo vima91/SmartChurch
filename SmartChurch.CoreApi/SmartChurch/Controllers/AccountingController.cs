@@ -75,9 +75,9 @@ namespace SmartChurch.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<ExpenseDto>> GetExpenses(DateTime? from, DateTime? to)
+        public ActionResult<List<ExpenseDto>> GetExpenses(ExpenseFilterDto dto)
         {
-            return Ok(_expenseService.GetExpenses(from, to));
+            return Ok(_expenseService.GetExpenses(dto.From, dto.To));
         }
     }
 }
