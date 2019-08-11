@@ -6,7 +6,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 })
 export class HttpService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAll(url: string) {
 
@@ -44,5 +44,9 @@ export class HttpService {
 
     const params = new HttpParams().set('q', term);
     return this.http.get(url, { params: params });
+  }
+
+  getAllWithSearchCriteria(url: string, item: any) {
+    return this.http.post(url, JSON.stringify(item));
   }
 }

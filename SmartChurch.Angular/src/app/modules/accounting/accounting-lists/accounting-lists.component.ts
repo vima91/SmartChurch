@@ -43,7 +43,7 @@ export class AccountingListsComponent implements OnInit {
   getExpenses() {
     this.isLoading = false;
     this.dataSource = new MatTableDataSource<IExpense>();
-    this.accountingService.getAll(`${environment.BASE_URL}/api/Accounting/GetExpenses`)
+    this.accountingService.getAllWithSearchCriteria(`${environment.BASE_URL}/api/Accounting/GetExpenses`, this.searchForm)
       .subscribe(expensesList => {
         // Assign the data to the data source for the table to render
         this.dataSource = new MatTableDataSource(<IExpense[]>expensesList);

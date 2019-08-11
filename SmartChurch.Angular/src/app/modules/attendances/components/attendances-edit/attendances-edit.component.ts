@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { IAttendance } from '../../interfaces/attendance.interface';
+import { IExpense } from 'src/app/modules/accounting/interfaces/expense.interface';
 
 @Component({
   selector: 'app-attendances-edit',
@@ -70,7 +71,7 @@ export class AttendancesEditComponent implements OnInit {
   editAttendance(attendance: IAttendance) {
     attendance.IsAttended = !attendance.IsAttended;
     return this.httpService.update(`${environment.BASE_URL}/api/attendance/UpdateAttendance/${attendance.Id}`, attendance)
-      .subscribe(() => {
+      .subscribe(result => {
         this.notificationUtil.success('Success', `Updated successfully `, {
           positionClass: 'toast-bottom-right'
         });
