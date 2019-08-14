@@ -466,7 +466,7 @@ namespace SmartChurch.Controllers
         public ActionResult<AppSettingsDto> AppSettings()
         {
             //Should always get only one record.
-            return Ok(_settingsService.AppSettingsRepo.GetAll().First());
+            return Ok(_settingsService.AppSettingsRepo.GetAllNoTracking().Single());
         }
 
         [HttpPost]

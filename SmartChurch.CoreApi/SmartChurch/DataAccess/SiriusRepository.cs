@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using SmartChurch.DataModel.Models.Core;
 using SmartChurch.Infrastructure.Helpers;
 
@@ -11,6 +13,7 @@ namespace SmartChurch.DataAccess
     public interface ISiriusRepository<TEntity, TEntityDto>
     {
         IEnumerable<TEntityDto> GetAll();
+        IEnumerable<TEntityDto> GetAllNoTracking();
         //IEnumerable<TEntityDto> GetAllNonDeletable();
         IEnumerable<TEntityDto> Find(Expression<Func<TEntity, bool>> expression);
         TEntityDto GetById(int id);
@@ -21,8 +24,8 @@ namespace SmartChurch.DataAccess
         int Delete(TEntityDto dto);
     }
 
-    public class SiriusRepository<TEntity, TEntityDto> : ISiriusRepository<TEntity, TEntityDto> 
-        where TEntityDto : class, ICommonDto 
+    public class SiriusRepository<TEntity, TEntityDto> : ISiriusRepository<TEntity, TEntityDto>
+        where TEntityDto : class, ICommonDto
         where TEntity : SiriusEntity
     {
         protected readonly Expression<Func<TEntity, bool>> IsNotDeletedExpression = s => s.IsDeletableEntity() && !s.IsDeleted();
@@ -38,7 +41,31 @@ namespace SmartChurch.DataAccess
 
         public virtual IEnumerable<TEntityDto> GetAll()
         {
-            return Mapper.Map<List<TEntityDto>>(Context.Set<TEntity>().Where(IsNotDeletedExpression).ToList());
+            return Mapper.Map<List<TEntityDto>>(typeof(TEntity)
+                .GetTypeInfo()
+                .IsAssignableFrom(typeof(SiriusDeletableEntity)) ?
+                Context.Set<TEntity>().Where(IsNotDeletedExpression).ToList() :
+                Context.Set<TEntity>().ToList());
+        }
+
+        public virtual IEnumerable<TEntityDto> GetAllNoTracking()
+        {
+            if (typeof(TEntity).GetTypeInfo().IsAssignableFrom(typeof(SiriusDeletableEntity)))
+            {
+                return Mapper.Map<List<TEntityDto>>(Context
+                    .Set<TEntity>()
+                    .AsNoTracking()
+                    .Where(IsNotDeletedExpression)
+                    .ToList());
+            }
+            else
+            {
+                return Mapper.Map<List<TEntityDto>>(Context
+                    .Set<TEntity>()
+                    .AsNoTracking()
+                    .ToList());
+            }
+
         }
 
         //public virtual IEnumerable<TEntityDto> GetAllNonDeletable()
