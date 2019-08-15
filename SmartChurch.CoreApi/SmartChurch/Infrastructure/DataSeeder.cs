@@ -51,7 +51,7 @@ namespace SmartChurch.Infrastructure
                     AppLogo = InitialAppSettings.ImageData,
                     AppName = InitialAppSettings.AppName,
                     City = "Hong Kong",
-                    Country = new Country { Name = "China", CreationUser = "Seeded", CreationDate = DateTime.Now, }
+                    Country = new Country { Name = "China", CreationUser = "Seeded", CreationDate = DateTime.UtcNow, }
                 };
 
                 context.AppSettings.Add(appSettings);
@@ -66,23 +66,231 @@ namespace SmartChurch.Infrastructure
         {
             #region Countries
 
-            var countryChina = new Country
-            {
-                Name = "China",
-                CreationDate = DateTime.Now,
-                CreationUser = Constants.SystemSeed,
-            };
+            Country defaultCountry = null;
 
             if (!context.Countries.Any())
             {
+                var countryChina = new Country
+                {
+                    Name = "China (Hong Kong)",
+                    CreationDate = DateTime.UtcNow,
+                    CreationUser = Constants.SystemSeed,
+                };
+                defaultCountry = countryChina;
+
+                var countryChina2 = new Country
+                {
+                    Name = "China (Guangzhou)",
+                    CreationDate = DateTime.UtcNow,
+                    CreationUser = Constants.SystemSeed,
+                };
+                var countryChinaOther = new Country
+                {
+                    Name = "China (Other)",
+                    CreationDate = DateTime.UtcNow,
+                    CreationUser = Constants.SystemSeed,
+                };
+                var countryOther = new Country
+                {
+                    Name = "Other",
+                    CreationDate = DateTime.UtcNow,
+                    CreationUser = Constants.SystemSeed,
+                };
+                
                 var countryThailand = new Country
                 {
                     Name = "Thailand",
-                    CreationDate = DateTime.Now,
+                    CreationDate = DateTime.UtcNow,
                     CreationUser = Constants.SystemSeed,
                 };
+                var countryEgypt = new Country
+                {
+                    Name = "Egypt",
+                    CreationDate = DateTime.UtcNow,
+                    CreationUser = Constants.SystemSeed,
+                };
+                var countryTaiwan = new Country
+                {
+                    Name = "Taiwan",
+                    CreationDate = DateTime.UtcNow,
+                    CreationUser = Constants.SystemSeed,
+                };
+                var countryAustralia = new Country
+                {
+                    Name = "Australia",
+                    CreationDate = DateTime.UtcNow,
+                    CreationUser = Constants.SystemSeed,
+                };
+                var countryEthiopia = new Country
+                {
+                    Name = "Ethiopia",
+                    CreationDate = DateTime.UtcNow,
+                    CreationUser = Constants.SystemSeed,
+                };
+                var countryIndia = new Country
+                {
+                    Name = "India",
+                    CreationDate = DateTime.UtcNow,
+                    CreationUser = Constants.SystemSeed,
+                };
+                var countryIndonesia = new Country
+                {
+                    Name = "Indonesia",
+                    CreationDate = DateTime.UtcNow,
+                    CreationUser = Constants.SystemSeed,
+                };
+                var countrySudan = new Country
+                {
+                    Name = "Sudan",
+                    CreationDate = DateTime.UtcNow,
+                    CreationUser = Constants.SystemSeed,
+                };
+                var countryUnitedStates = new Country
+                {
+                    Name = "United States",
+                    CreationDate = DateTime.UtcNow,
+                    CreationUser = Constants.SystemSeed,
+                };
+
                 context.Countries.Add(countryChina);
+                context.Countries.Add(countryChina2);
+                context.Countries.Add(countryChinaOther);
+                context.Countries.Add(countryOther);
                 context.Countries.Add(countryThailand);
+                context.Countries.Add(countryEgypt);
+                context.Countries.Add(countryTaiwan);
+                context.Countries.Add(countryAustralia);
+                context.Countries.Add(countryEthiopia);
+                context.Countries.Add(countryIndia);
+                context.Countries.Add(countryIndonesia);
+                context.Countries.Add(countrySudan);
+                context.Countries.Add(countryUnitedStates);
+            }
+
+            #endregion
+
+            #region MaritalStatus
+
+            if (!context.MaritalStatuses.Any())
+            {
+                var maritalStatus1 = new MaritalStatus
+                {
+                    CreationDate = DateTime.UtcNow,
+                    CreationUser = Constants.SystemSeed,
+                    Name = "Married",
+                };
+                var maritalStatus2 = new MaritalStatus
+                {
+                    CreationDate = DateTime.UtcNow,
+                    CreationUser = Constants.SystemSeed,
+                    Name = "In a relationship",
+                };
+                var maritalStatus3 = new MaritalStatus
+                {
+                    CreationDate = DateTime.UtcNow,
+                    CreationUser = Constants.SystemSeed,
+                    Name = "Single",
+                };
+                var maritalStatus4 = new MaritalStatus
+                {
+                    CreationDate = DateTime.UtcNow,
+                    CreationUser = Constants.SystemSeed,
+                    Name = "Divorced",
+                };
+                var maritalStatus5 = new MaritalStatus
+                {
+                    CreationDate = DateTime.UtcNow,
+                    CreationUser = Constants.SystemSeed,
+                    Name = "Engaged",
+                };
+                context.MaritalStatuses.Add(maritalStatus1);
+                context.MaritalStatuses.Add(maritalStatus2);
+                context.MaritalStatuses.Add(maritalStatus3);
+                context.MaritalStatuses.Add(maritalStatus4);
+                context.MaritalStatuses.Add(maritalStatus5);
+            }
+
+            #endregion
+
+            #region MarriageTypes
+
+            if (!context.MarriageTypes.Any())
+            {
+                var marriageType1 = new MarriageType
+                {
+                    CreationDate = DateTime.UtcNow,
+                    CreationUser = Constants.SystemSeed,
+                    Name = "Civil",
+                };
+                var marriageType2 = new MarriageType
+                {
+                    CreationDate = DateTime.UtcNow,
+                    CreationUser = Constants.SystemSeed,
+                    Name = "Church",
+                };
+                var marriageType3 = new MarriageType
+                {
+                    CreationDate = DateTime.UtcNow,
+                    CreationUser = Constants.SystemSeed,
+                    Name = "Other",
+                };
+
+                context.MarriageTypes.Add(marriageType1);
+                context.MarriageTypes.Add(marriageType2);
+                context.MarriageTypes.Add(marriageType3);
+            }
+
+            #endregion
+
+            #region ReligiousBackgrounds
+
+            if (!context.ReligiousBackgrounds.Any())
+            {
+                var religiousBackgroundNone = new ReligiousBackground
+                {
+                    CreationDate = DateTime.UtcNow,
+                    CreationUser = Constants.SystemSeed,
+                    Name = "None",
+                };
+                var religiousBackgroundChristian = new ReligiousBackground
+                {
+                    CreationDate = DateTime.UtcNow,
+                    CreationUser = Constants.SystemSeed,
+                    Name = "Christian",
+                };
+
+                context.ReligiousBackgrounds.Add(religiousBackgroundNone);
+                context.ReligiousBackgrounds.Add(religiousBackgroundChristian);
+            }
+
+            #endregion
+
+            #region Baptism
+
+            if (!context.BaptismTypes.Any())
+            {
+                var baptism1 = new BaptismType
+                {
+                    CreationDate = DateTime.UtcNow,
+                    CreationUser = Constants.SystemSeed,
+                    Name = "None",
+                };
+                var baptism2 = new BaptismType
+                {
+                    CreationDate = DateTime.UtcNow,
+                    CreationUser = Constants.SystemSeed,
+                    Name = "Orthodox",
+                };
+                var baptism3 = new BaptismType
+                {
+                    CreationDate = DateTime.UtcNow,
+                    CreationUser = Constants.SystemSeed,
+                    Name = "Other",
+                };
+
+                context.BaptismTypes.Add(baptism1);
+                context.BaptismTypes.Add(baptism2);
+                context.BaptismTypes.Add(baptism3);
             }
 
             #endregion
@@ -94,26 +302,26 @@ namespace SmartChurch.Infrastructure
                 var tstBank = new TransactionSourceType
                 {
                     Name = "Bank Account",
-                    CreationDate = DateTime.Now,
+                    CreationDate = DateTime.UtcNow,
                     CreationUser = Constants.SystemSeed,
                 };
                 var tstChurch = new TransactionSourceType
                 {
                     Name = "Church Account",
-                    CreationDate = DateTime.Now,
+                    CreationDate = DateTime.UtcNow,
                     CreationUser = Constants.SystemSeed,
                 };
                 var tstExpense = new TransactionSourceType
                 {
                     Name = "Expenses Account",
-                    CreationDate = DateTime.Now,
+                    CreationDate = DateTime.UtcNow,
                     CreationUser = Constants.SystemSeed,
                 };
                 context.TransactionSourceTypes.Add(tstBank);
                 context.TransactionSourceTypes.Add(tstChurch);
                 context.TransactionSourceTypes.Add(tstExpense);
             }
-            
+
             #endregion
 
             #region AppSettings
@@ -122,9 +330,9 @@ namespace SmartChurch.Infrastructure
             {
                 AppName = Constants.AppName,
                 AppLogo = Constants.AppLogo,
-                Country = countryChina,
+                Country = defaultCountry ?? new Country { Name = "China (Hong Kong)", CreationDate = DateTime.UtcNow, CreationUser = Constants.SystemSeed },
                 City = "Hong Kong",
-                CreationDate = DateTime.Now,
+                CreationDate = DateTime.UtcNow,
                 CreationUser = Constants.SystemSeed,
             };
             context.AppSettings.Add(appSettings);
@@ -136,49 +344,49 @@ namespace SmartChurch.Infrastructure
             var expenseType1 = new ExpenseType
             {
                 Name = "Presents",
-                CreationDate = DateTime.Now,
+                CreationDate = DateTime.UtcNow,
                 CreationUser = Constants.SystemSeed,
             };
             var expenseType2 = new ExpenseType
             {
                 Name = "Food",
-                CreationDate = DateTime.Now,
+                CreationDate = DateTime.UtcNow,
                 CreationUser = Constants.SystemSeed,
             };
             var expenseType3 = new ExpenseType
             {
                 Name = "Rent",
-                CreationDate = DateTime.Now,
+                CreationDate = DateTime.UtcNow,
                 CreationUser = Constants.SystemSeed,
             };
             var expenseType4 = new ExpenseType
             {
                 Name = "Transportation",
-                CreationDate = DateTime.Now,
+                CreationDate = DateTime.UtcNow,
                 CreationUser = Constants.SystemSeed,
             };
             var expenseType5 = new ExpenseType
             {
                 Name = "Charity",
-                CreationDate = DateTime.Now,
+                CreationDate = DateTime.UtcNow,
                 CreationUser = Constants.SystemSeed,
             };
             var expenseType6 = new ExpenseType
             {
                 Name = "Maintenance",
-                CreationDate = DateTime.Now,
+                CreationDate = DateTime.UtcNow,
                 CreationUser = Constants.SystemSeed,
             };
             var expenseType7 = new ExpenseType
             {
                 Name = "Labour",
-                CreationDate = DateTime.Now,
+                CreationDate = DateTime.UtcNow,
                 CreationUser = Constants.SystemSeed,
             };
             var expenseType8 = new ExpenseType
             {
                 Name = "Other",
-                CreationDate = DateTime.Now,
+                CreationDate = DateTime.UtcNow,
                 CreationUser = Constants.SystemSeed,
             };
             context.ExpenseTypes.Add(expenseType1);
