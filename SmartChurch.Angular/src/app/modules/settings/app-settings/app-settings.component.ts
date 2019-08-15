@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { HttpService } from '../../../API/http.service';
 import { environment } from '../../../../environments/environment';
@@ -18,23 +18,26 @@ export class AppSettingsComponent implements OnInit {
   newImageServerPath = null;
 
   constructor(private fb: FormBuilder,
-              private settingsService: HttpService,
-              private _toaster: ToastrService) {
+    private settingsService: HttpService,
+    private _toaster: ToastrService) {
 
-    this.settingsService.getAll(`${environment.BASE_URL}/api/settings/AppSettings`)
+    this.settingsService.getItemById(`${environment.BASE_URL}/api/settings/AppSettings`)
       .subscribe(appSettings => {
-        this.appSettings = appSettings[0];
-        console.log(this.appSettings);
+        this.appSettings = <IAppSettings>appSettings;
         this.appSettingsForm.patchValue(this.appSettings);
       });
-    /*this.sharedService.changeEmitted$.subscribe(newPath => {
-      this.newAvatarImagePath = `${environment.apiEndpoint}${newPath}`;
-    });*/
   }
 
   ngOnInit() {
     this.appSettingsForm = this.fb.group({
-      AppName: [''],
+      AppName: ['', Validators.required],
+      AppLogo: [''],
+      Id: [''],
+      CountryId: [''],
+      City: [''],
+      StartOfSchoolYear: [''],
+      ChurchBalanceReminder: [''],
+      BankBalanceReminder: [''],
     });
   }
 
@@ -44,14 +47,19 @@ export class AppSettingsComponent implements OnInit {
   }
 
   updatePersonalInformation() {
-    const payload = {};
-
-    if (Object.keys(payload).length) {
-      /*this._http
-        .postData(`${environment.apiEndpoint}/v2/users/editUser`, {}, payload)
-        .subscribe(res => this._toaster.success('Data Updated', 'Success'));*/
-      this._toaster.warning('Please update info first', 'Warning');
+    if (this.appSettingsForm.valid) {
+      return this.settingsService.update(`${environment.BASE_URL}/api/settings/UpdateAppSettings`, this.appSettingsForm.value)
+        .subscribe(result => {
+          this._toaster.success('Success', `Updated successfully `, {
+            positionClass: 'toast-bottom-right'
+          });
+        }, error => {
+          this._toaster.error(error.message, `Error`, {
+            positionClass: 'toast-bottom-right'
+          });
+        });
     }
+
   }
 
   uploadProfileImage(event) {
@@ -66,7 +74,9 @@ export class AppSettingsComponent implements OnInit {
       reader.onload = onload => {
         // called once readAsDataURL is completed
         this.newAvatarImagePath = onload.target['result'];
-        console.log('this.newAvatarImagePath', this.newAvatarImagePath);
+        this.appSettingsForm.patchValue({
+          AppLogo: this.newAvatarImagePath
+        });
 
       };
     }
