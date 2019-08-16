@@ -72,4 +72,7 @@ export class PeopleListComponent implements OnInit, AfterViewInit {
         this.getPersons();
       });
   }
+  setDefaultImage(row: IPerson) {
+    row.Picture = "assets/images/No_Image_Available.jpg";
+  }
 }

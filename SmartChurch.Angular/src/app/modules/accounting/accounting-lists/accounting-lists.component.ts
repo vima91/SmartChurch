@@ -23,6 +23,7 @@ export class AccountingListsComponent implements OnInit {
   isLoading = false;
   balance: any = {};
   searchForm: any = { from: "", to: "" };
+  expensesList: IExpense[] = [];
   @ViewChild('toInput', { static: false }) toInput: MatInput;
   @ViewChild('fromInput', { static: false }) fromInput: MatInput;
 
@@ -45,8 +46,9 @@ export class AccountingListsComponent implements OnInit {
     this.dataSource = new MatTableDataSource<IExpense>();
     this.accountingService.getAllWithSearchCriteria(`${environment.BASE_URL}/api/Accounting/GetExpenses`, this.searchForm)
       .subscribe(expensesList => {
+        this.expensesList = <IExpense[]>expensesList;
         // Assign the data to the data source for the table to render
-        this.dataSource = new MatTableDataSource(<IExpense[]>expensesList);
+        this.dataSource = new MatTableDataSource(this.expensesList);
         this.isLoading = !this.isLoading;
       });
   }

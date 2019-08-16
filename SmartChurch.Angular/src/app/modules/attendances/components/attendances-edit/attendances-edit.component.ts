@@ -47,7 +47,7 @@ export class AttendancesEditComponent implements OnInit {
       .subscribe(attendances => {
         this.attendancesList = attendances || [];
         // Assign the data to the data source for the table to render
-        this.dataSource = new MatTableDataSource(attendances);
+        this.dataSource = new MatTableDataSource(this.attendancesList);
         this.isLoading = !this.isLoading;
       });
   }
