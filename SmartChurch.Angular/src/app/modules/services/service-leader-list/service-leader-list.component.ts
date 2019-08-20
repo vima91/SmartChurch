@@ -49,20 +49,10 @@ export class ServiceLeaderListComponent implements OnInit {
         this.leadersList = serviceLeaders;
         // Assign the data to the data source for the table to render
         this.dataSource = new MatTableDataSource(serviceLeaders);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort; 
         this.isLoading = !this.isLoading;
       });
-  }
-
-  /**
-   * Set the paginator and sort after the view init since this component will
-   * be able to query its view for the initialized paginator and sort.
-   */
-  ngAfterViewInit() {
-
-    setTimeout(() => {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    }, 1000);
   }
 
   applyFilter($event) {

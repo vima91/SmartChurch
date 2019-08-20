@@ -49,6 +49,8 @@ export class AccountingListsComponent implements OnInit {
         this.expensesList = <IExpense[]>expensesList;
         // Assign the data to the data source for the table to render
         this.dataSource = new MatTableDataSource(this.expensesList);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
         this.isLoading = !this.isLoading;
       });
   }
@@ -57,17 +59,6 @@ export class AccountingListsComponent implements OnInit {
     this.fromInput.value = '';
     this.toInput.value = '';
     this.searchForm = { from: "", to: "" }
-  }
-  /**
-   * Set the paginator and sort after the view init since this component will
-   * be able to query its view for the initialized paginator and sort.
-   */
-  ngAfterViewInit() {
-
-    setTimeout(() => {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    }, 1000);
   }
 
   applyFilter($event) {

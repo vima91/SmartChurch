@@ -16,7 +16,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './people-list.component.html',
   styleUrls: ['./people-list.component.scss']
 })
-export class PeopleListComponent implements OnInit, AfterViewInit {
+export class PeopleListComponent implements OnInit {
   displayedColumns: string[] = ['Name', 'PhoneNumber', 'Email', 'delete'];
   dataSource: MatTableDataSource<IPerson>;
 
@@ -42,20 +42,10 @@ export class PeopleListComponent implements OnInit, AfterViewInit {
         this.persons = persons;
         // Assign the data to the data source for the table to render
         this.dataSource = new MatTableDataSource(persons);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;  
         this.isLoading = !this.isLoading;
       });
-  }
-
-  /**
-   * Set the paginator and sort after the view init since this component will
-   * be able to query its view for the initialized paginator and sort.
-   */
-  ngAfterViewInit() {
-
-    setTimeout(() => {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    }, 1000);
   }
 
   applyFilter($event) {

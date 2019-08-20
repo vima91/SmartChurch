@@ -26,18 +26,6 @@ export class RemindersMarriageAnniversaryListComponent implements OnInit {
     this.getReminders();
   }
 
-  /**
-   * Set the paginator and sort after the view init since this component will
-   * be able to query its view for the initialized paginator and sort.
-   */
-  ngAfterViewInit() {
-
-    setTimeout(() => {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    }, 1000);
-  }
-
   applyFilter($event) {
     this.dataSource.filter = $event.target.value.trim().toLowerCase();
   }
@@ -50,6 +38,8 @@ export class RemindersMarriageAnniversaryListComponent implements OnInit {
         this.persons = persons;
         // Assign the data to the data source for the table to render
         this.dataSource = new MatTableDataSource(persons);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;  
         this.isLoading = !this.isLoading;
       });
   }
