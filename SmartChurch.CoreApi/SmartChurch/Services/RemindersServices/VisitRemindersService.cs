@@ -22,7 +22,7 @@ namespace SmartChurch.Services.RemindersServices
                 Context
                     .Set<Person>()
                     .Where(IsNotDeletedExpression)
-                    .Where(s => s.LastVisitDate.Value.AddDays(30) > DateTime.Now));
+                    .Where(s => s.LastVisitDate.Value.AddDays(30) < DateTime.Now));
         }
 
         public override VisitReminderDto Update(int id, VisitReminderDto dto)
