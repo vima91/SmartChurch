@@ -19,7 +19,6 @@ namespace SmartChurch.Services.RemindersServices
 
         public override IEnumerable<BirthdayReminderDto> GetAll()
         {
-            
             return Mapper.Map<List<BirthdayReminderDto>>(
                 Context
                     .Set<Person>()

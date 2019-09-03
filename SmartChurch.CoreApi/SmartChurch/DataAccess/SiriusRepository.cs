@@ -93,7 +93,10 @@ namespace SmartChurch.DataAccess
 
         public virtual TEntityDto Update(int id, TEntityDto dto)
         {
-            var existingEntity = Context.Set<TEntity>().Where(IsNotDeletedExpression).SingleOrDefault(s => s.Id == id);
+            var existingEntity = typeof(TEntity).GetTypeInfo().IsAssignableFrom(typeof(SiriusDeletableEntity))
+                ? Context.Set<TEntity>().Where(IsNotDeletedExpression).SingleOrDefault(s => s.Id == id)
+                : Context.Set<TEntity>().SingleOrDefault(s => s.Id == id);
+
             if (existingEntity == null)
             {
                 throw new KeyNotFoundException("Cannot find entity to update");
