@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  BASE_URL: 'http://smartchurchapi.handleerror.com'
+  BASE_URL: 'http://localhost:5000'
 };
