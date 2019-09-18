@@ -28,6 +28,8 @@ namespace SmartChurch.Infrastructure
             services.AddTransient<PersonService>();
             services.AddTransient<ServiceSubscriptionService>();
 
+            services.AddTransient<INotificationService, NotificationService>();
+
             #endregion
         }
     }

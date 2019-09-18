@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using SmartChurch.DataModel.Models.Core;
@@ -14,12 +13,10 @@ namespace SmartChurch.DataAccess
     {
         IEnumerable<TEntityDto> GetAll();
         IEnumerable<TEntityDto> GetAllNoTracking();
-        //IEnumerable<TEntityDto> GetAllNonDeletable();
         IEnumerable<TEntityDto> Find(Expression<Func<TEntity, bool>> expression);
         TEntityDto GetById(int id);
         TEntityDto Create(TEntityDto dto);
         TEntityDto Update(int id, TEntityDto dto);
-        //TEntityDto UpdateNonDeletable(int id, TEntityDto dto);
         int Delete(int id);
         int Delete(TEntityDto dto);
     }
@@ -41,16 +38,14 @@ namespace SmartChurch.DataAccess
 
         public virtual IEnumerable<TEntityDto> GetAll()
         {
-            return Mapper.Map<List<TEntityDto>>(typeof(TEntity)
-                .GetTypeInfo()
-                .IsAssignableFrom(typeof(SiriusDeletableEntity)) ?
-                Context.Set<TEntity>().Where(IsNotDeletedExpression).ToList() :
-                Context.Set<TEntity>().ToList());
+            return Mapper.Map<List<TEntityDto>>(typeof(TEntity).BaseType?.Name == nameof(SiriusDeletableEntity) 
+                ? Context.Set<TEntity>().Where(IsNotDeletedExpression).ToList() 
+                : Context.Set<TEntity>().ToList());
         }
 
         public virtual IEnumerable<TEntityDto> GetAllNoTracking()
         {
-            if (typeof(TEntity).GetTypeInfo().IsAssignableFrom(typeof(SiriusDeletableEntity)))
+            if (typeof(TEntity).BaseType?.Name == nameof(SiriusDeletableEntity))
             {
                 return Mapper.Map<List<TEntityDto>>(Context
                     .Set<TEntity>()
@@ -67,11 +62,6 @@ namespace SmartChurch.DataAccess
             }
 
         }
-
-        //public virtual IEnumerable<TEntityDto> GetAllNonDeletable()
-        //{
-        //    return Mapper.Map<List<TEntityDto>>(Context.Set<TEntity>().ToList());
-        //}
 
         public virtual IEnumerable<TEntityDto> Find(Expression<Func<TEntity, bool>> expression)
         {
@@ -93,7 +83,7 @@ namespace SmartChurch.DataAccess
 
         public virtual TEntityDto Update(int id, TEntityDto dto)
         {
-            var existingEntity = typeof(TEntity).GetTypeInfo().IsAssignableFrom(typeof(SiriusDeletableEntity))
+            var existingEntity = typeof(TEntity).BaseType?.Name == nameof(SiriusDeletableEntity)
                 ? Context.Set<TEntity>().Where(IsNotDeletedExpression).SingleOrDefault(s => s.Id == id)
                 : Context.Set<TEntity>().SingleOrDefault(s => s.Id == id);
 
@@ -108,21 +98,6 @@ namespace SmartChurch.DataAccess
 
             return Mapper.Map<TEntityDto>(existingEntity);
         }
-
-        //public virtual TEntityDto UpdateNonDeletable(int id, TEntityDto dto)
-        //{
-        //    var existingEntity = Context.Set<TEntity>().FirstOrDefault(s => s.Id == id);
-        //    if (existingEntity == null)
-        //    {
-        //        throw new KeyNotFoundException("Cannot find entity to update");
-        //    }
-
-        //    dto.Id = id;
-        //    Context.Entry(existingEntity).CurrentValues.SetValues(dto);
-        //    Context.SaveChanges();
-
-        //    return Mapper.Map<TEntityDto>(existingEntity);
-        //}
 
         public virtual int Delete(int id)
         {

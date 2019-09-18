@@ -2160,6 +2160,41 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Notifications",
+			"item": [
+				{
+					"name": "SendEmails",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Subject\": \"This is a test subject\",\n\t\"Body\": \"This is a test body\",\n\t\"Emails\": [\n\t\t\"evram.ehab@evolvice.de\",\n\t\t\"evram.ehab@gmail.com\" \n\t]\n}"
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/{{ApiUrl}}/Notifications/SendEmail",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"{{ApiUrl}}",
+								"Notifications",
+								"SendEmail"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

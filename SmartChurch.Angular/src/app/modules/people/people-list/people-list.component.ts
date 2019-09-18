@@ -43,7 +43,7 @@ export class PeopleListComponent implements OnInit {
         // Assign the data to the data source for the table to render
         this.dataSource = new MatTableDataSource(persons);
         this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;  
+        this.dataSource.sort = this.sort;
         this.isLoading = !this.isLoading;
       });
   }
@@ -53,7 +53,7 @@ export class PeopleListComponent implements OnInit {
   }
 
   removePerson(person: IPerson) {
-    this.peopleService.delete(`${environment.BASE_URL}/api/person/deleteperson`, person)
+    this.peopleService.delete(`${environment.BASE_URL}/api/person/deleteperson/${person.Id}`, person)
       .subscribe(() => {
 
         this.notificationUtil.success('Success', `${person.Name} is Deleted successfully `, {
