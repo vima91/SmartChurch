@@ -2178,7 +2178,12 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"Subject\": \"This is a test subject\",\n\t\"Body\": \"This is a test body\",\n\t\"Emails\": [\n\t\t\"evram.ehab@evolvice.de\",\n\t\t\"evram.ehab@gmail.com\" \n\t]\n}"
+							"raw": "{\n\t\"Subject\": \"This is a test subject\",\n\t\"Body\": \"This is a test body\",\n\t\"ServiceId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "{{BaseUrl}}/{{ApiUrl}}/Notifications/SendEmail",
